@@ -1,26 +1,26 @@
-Used Car Price Predictor: Regression-Based Market Valuation Model
+Used Car Price Predictor: Random Forest–Based Market Valuation Model
 Abstract
 
-This project focuses on developing a Used Car Price Predictor, a machine learning model designed to estimate the fair market value of used vehicles based on structured attributes such as make, model, year, mileage, condition, fuel type, and drivetrain specifications. The purpose of this model is to assist consumers, dealerships, and online marketplaces in identifying reasonable price ranges in a volatile and increasingly expensive used car market.
+This project focuses on developing a Used Car Price Predictor, a machine learning system designed to estimate the fair market value of used vehicles based on structured attributes such as make, model, year, mileage, condition, fuel type, and drivetrain specifications. The primary model developed and analyzed in this project is a Random Forest regression model, selected for its ability to capture non-linear relationships and feature interactions commonly present in real-world pricing data.
 
-Using a dataset of historical vehicle listings, this project applies data preprocessing, exploratory data analysis (EDA), and regression-based predictive modeling to uncover the most influential factors driving vehicle prices. By learning patterns embedded in real-world listings, the model aims to promote pricing transparency and support data-driven decision making for buyers and sellers alike.
+The purpose of this model is to assist consumers, dealerships, and online marketplaces in determining reasonable price ranges in a volatile and increasingly expensive used car market. Using a dataset of historical vehicle listings, the project applies data preprocessing, exploratory data analysis (EDA), and tree-based regression modeling to identify the most influential factors affecting used car prices.
 
 Introduction
 
-The goal of this project is to develop a machine learning system that accurately predicts the market value of a used vehicle based on its observable features. The used car market has experienced significant price instability in recent years due to economic conditions, supply chain disruptions, and shifts in consumer demand. As a result, buyers often struggle to determine whether a listed price reflects fair value.
+The goal of this project is to design and evaluate a machine learning model that accurately predicts the market value of a used vehicle given its observable attributes. Due to economic conditions, supply chain disruptions, and shifting consumer demand, used car prices have become increasingly difficult to evaluate using traditional heuristics.
 
-This project is motivated by the need for an objective, data-driven pricing tool that reduces reliance on intuition or incomplete heuristics. By leveraging historical used car listings, the model seeks to identify which vehicle characteristics have the strongest relationships with price and to generalize those relationships to unseen data.
+In this project, I focus specifically on developing a Random Forest regression model to address these challenges. Random Forests are well-suited for this task due to their robustness to outliers, ability to model complex non-linear patterns, and reduced risk of overfitting compared to single decision trees. By leveraging historical used car listings, the model aims to provide a data-driven pricing tool that improves transparency and supports informed decision making.
 
 The dataset used in this project is sourced from Kaggle:
 https://www.kaggle.com/datasets/taeefnajib/used-car-price-prediction-dataset
 
 Project Overview
 
-This project implements a supervised regression framework to predict continuous vehicle prices.
+This project implements a supervised regression framework with an emphasis on tree-based ensemble learning.
 
-Rather than focusing on classification (e.g., cheap vs. expensive), the model estimates a numerical price value and evaluates performance using standard regression metrics. Multiple model families are explored and compared to assess trade-offs between interpretability and predictive accuracy.
+The core contribution of this work is the design, training, and evaluation of a Random Forest regression model for used car price prediction. Supporting analyses—including feature engineering and EDA—are used to improve model performance and interpretability.
 
-The final objective is to produce a model capable of outputting a realistic price estimate or range for a used vehicle given its attributes.
+The final output of the model is a continuous price estimate for a given vehicle configuration.
 
 Dataset Details
 1. Source Data
@@ -33,7 +33,7 @@ Target Variable: price (continuous)
 
 2. Feature Categories
 
-The dataset contains a diverse set of features, including:
+The dataset includes:
 
 Vehicle make and model
 
@@ -43,9 +43,9 @@ Mileage
 
 Fuel type
 
-Engine specifications
+Engine type
 
-Transmission type
+Transmission
 
 Exterior and interior color
 
@@ -53,65 +53,51 @@ Accident history
 
 Title status
 
-3. Analytical Goal
+3. Analytical Focus
 
-The immediate analytical objective is to:
+The data is used to:
 
-Identify the most influential features affecting vehicle price.
+Identify features with the strongest influence on vehicle price.
 
-Reduce noise and redundancy through feature selection.
+Examine feature interactions captured by the Random Forest model.
 
-Use the refined feature set to train accurate and generalizable regression models.
+Reduce noise through informed preprocessing and feature selection.
 
-Methodology: Regression Modeling
+Methodology: Random Forest Regression
 1. Data Preprocessing
 
 Handling missing and inconsistent values
 
 Encoding categorical variables
 
-Normalizing or scaling numerical features where appropriate
+Scaling numerical features where appropriate
 
-Removing or correcting outliers that distort price distributions
+Identifying and mitigating extreme outliers
 
 2. Exploratory Data Analysis (EDA)
 
-EDA is used to:
+EDA is conducted to:
 
-Examine price distributions
+Analyze price distributions
 
-Analyze correlations between features and price
+Study correlations between features and price
 
 Detect multicollinearity
 
-Identify non-linear relationships that may benefit from tree-based or neural models
+Motivate the use of a non-linear, ensemble-based model
 
-3. Model Construction
+3. Random Forest Model Development
 
-Multiple regression-based approaches are explored, including:
+The Random Forest regressor is trained using an ensemble of decision trees, each constructed on bootstrapped samples of the data with randomized feature selection. This approach:
 
-Linear and regularized regression models
+Captures non-linear relationships between features and price
 
-Decision tree–based regressors
+Models complex interactions without explicit feature engineering
 
-Neural network regressors
+Reduces variance compared to single decision trees
 
-Model performance is evaluated using Mean Squared Error (MSE) and related residual-based metrics. Statistical techniques such as F-tests are used to assess feature significance and guide feature elimination.
+Hyperparameters such as the number of trees, maximum tree depth, and minimum samples per leaf are tuned to balance bias and variance.
 
-4. Model Comparison
+4. Model Evaluation
 
-Different model families are compared to determine:
-
-Predictive accuracy
-
-Stability across unseen data
-
-Interpretability versus performance trade-offs
-
-Accuracy is ultimately assessed by how closely predicted prices align with true market values and whether predictions fall within an acceptable error range.
-
-References
-
-Kaggle – Your Home for Data Science
-
-Used Car Price Prediction Dataset (Taeef Najib)
+Model performance is evaluated using Mean Squared Error (MSE) and residual analysis on held-out test data. Feature importance scores derived from the Random Forest are analyzed to interpret which vehicle attributes most strongly influence predicted prices.
